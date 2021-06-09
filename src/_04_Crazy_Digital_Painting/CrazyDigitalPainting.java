@@ -1,18 +1,21 @@
 package _04_Crazy_Digital_Painting;
 
+import java.awt.Color;
+
 public class CrazyDigitalPainting {
     // 1. Create two final static integers for the width and height of the display.
-
+	final int WIDTH = 400;
+	final int HEIGHT = 400;
 
     // 2. Create a 2D array of Color objects. You will need to import
     //    java.awt.Color. Initialize the size of the array using the 
     //    integers created in step 1.
-
+	Color[][] colors = new Color[WIDTH][HEIGHT];
 
 
     public CrazyDigitalPainting() {
         // 3. Open the crazy_digital_painting.png file and look at the image.
-
+    	
         // 4. Iterate through the 2D array and initialize each Color object
         //    to a new color. The sample image was created using the following 
         //    pattern:
