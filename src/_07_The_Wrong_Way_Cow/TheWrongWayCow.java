@@ -48,12 +48,69 @@
 
 package _07_The_Wrong_Way_Cow;
 
+import java.util.HashMap;
+
 public class TheWrongWayCow {
 
     public static int[] findWrongWayCow(final char[][] field) {
         // Fill in the code to return the [col, row] coordinate position of the
         // head (letter 'c') of the wrong way cow!
         
+    	int[] rowCol = null;
+        int northCnt = 0;
+        int southCnt = 0;
+        int westCnt = 0;
+        int eastCnt = 0;
+        
+        HashMap<String, int[]> hm = new HashMap<String, int[]>(4);
+
+    	
+    	for (int i = 0; i < field.length; i++) {
+    		for (int j = 0; j < field[0].length; j++) {
+    			if (hm.size() > 1 && (northCnt + southCnt + westCnt + eastCnt) > 2) {
+    				i = field.length;
+    				break;
+    			}
+    			
+    			if (field[i][j] == 'c') {
+    				int numRows = field.length;
+    				int numCols = field[0].length;
+    				
+    				if (northCnt < 2) {
+    					if ((i-2) < numRows && field[i-1][j] == 'o' && field[i-2][j] == 'w') {
+    						hm.put("north", new int[] {j, i});
+    						
+    						//get the value: hm.get("north")
+    						//this will get the value of north
+    						
+    						northCnt++;
+    						continue;
+    					}
+    				}
+    				
+    				if (southCnt < 2) {
+    					if ((i+2) < numRows && field[i+1][j] == 'o' && field[i+2][j] == 'w') {
+    						hm.put("south", new int[] {j, i});
+    						
+    						southCnt++;
+    						continue;
+    					}
+    				}
+    			}
+    		}
+    	}
+    	
+    	// Check if the search should continue: 2 directions found and at least 3 cows found
+    	  // Set i to break out of outer loop
+    	// Found a 'c', find the direction of the cow!
+    	  //North
+    	  //South
+    	  //West
+    	  //East
+
+    	 // Which ever direction has only 1 cow, that's the WWC!
+
+    	
         return null;
     }
 }
