@@ -77,23 +77,60 @@ public class TheWrongWayCow {
     				int numCols = field[0].length;
     				
     				if (northCnt < 2) {
-    					if ((i-2) < numRows && field[i-1][j] == 'o' && field[i-2][j] == 'w') {
-    						hm.put("north", new int[] {j, i});
-    						
-    						//get the value: hm.get("north")
-    						//this will get the value of north
-    						
-    						northCnt++;
-    						continue;
+    					if ((i-2) > 0) {
+	    					if (field[i-1][j] == 'o' && field[i-2][j] == 'w') {
+	    						hm.put("north", new int[] {j, i});
+	    						
+	    						System.out.println("North: " + j + ", " + i);
+	    						
+	    						//get the value: hm.get("north")
+	    						//this will get the value of north
+	    						
+	    						northCnt++;
+	    						continue;
+	    					}
     					}
     				}
     				
     				if (southCnt < 2) {
-    					if ((i+2) < numRows && field[i+1][j] == 'o' && field[i+2][j] == 'w') {
-    						hm.put("south", new int[] {j, i});
-    						
-    						southCnt++;
-    						continue;
+    					if ((i+2) < numRows) {
+	    					if (field[i+1][j] == 'o' && field[i+2][j] == 'w') {
+	    						hm.put("south", new int[] {j, i});
+	    						
+	    						System.out.println("South: " + j + ", " + i);
+	    						
+	    						southCnt++;
+	    						continue;
+	    					}
+    					}
+    				}
+    				
+    				System.out.println("w: " + westCnt);
+    				if (westCnt < 2) {
+    					System.out.println("w: " + (j-2));
+    					if ((j-2) > 0) {
+    						//System.out.println("w: " + "i: " + i + " j: " + j + " o: " + field[i][j-1] + " w: " + field[i][j+2]);
+	    					if (field[i][j-1] == 'o' && field[i][j-2] == 'w') {
+	    						hm.put("west", new int[] {j, i});
+	    						
+	    						System.out.println("West: " + j + ", " + i);
+	    						
+	    						westCnt++;
+	    						continue;
+	    					}
+    					}
+    				}
+    				
+    				if (eastCnt < 2) {
+    					if ((j+2) < numCols) {
+	    					if (field[i][j+1] == 'o' && field[i][j+2] == 'w') {
+	    						hm.put("east", new int[] {j, i});
+	    						
+	    						System.out.println("East: " + j + ", " + i);
+	    						
+	    						eastCnt++;
+	    						continue;
+	    					}
     					}
     				}
     			}
@@ -109,7 +146,56 @@ public class TheWrongWayCow {
     	  //East
 
     	 // Which ever direction has only 1 cow, that's the WWC!
-
+    	
+    	if (northCnt == 2) {
+			if (southCnt == 1) {
+				return hm.get("south");
+			}
+			
+			if (westCnt == 1) {
+				return hm.get("west");
+			}
+			
+			if (eastCnt == 1) {
+				return hm.get("east");
+			}
+		}else if (southCnt == 2) {
+			if (northCnt == 1) {
+				return hm.get("north");
+			}
+			
+			if (westCnt == 1) {
+				return hm.get("west");
+			}
+			
+			if (eastCnt == 1) {
+				return hm.get("east");
+			}
+		}else if (westCnt == 2) {
+			if (northCnt == 1) {
+				return hm.get("north");
+			}
+			
+			if (southCnt == 1) {
+				return hm.get("south");
+			}
+			
+			if (eastCnt == 1) {
+				return hm.get("east");
+			}
+		}else if (eastCnt == 2) {
+			if (northCnt == 1) {
+				return hm.get("north");
+			}
+			
+			if (southCnt == 1) {
+				return hm.get("south");
+			}
+			
+			if (westCnt == 1) {
+				return hm.get("west");
+			}
+		}
     	
         return null;
     }
